@@ -1,0 +1,40 @@
+﻿@using DataAccessDemo.Ui.Models
+@model DataAccessDemo.Ui.Models.PeopleSearchData
+
+@{
+    ViewBag.Title = "AdvancedSearchResults";
+}
+
+<h2>Advanced Search Results</h2>
+@{ Html.RenderPartial("AdvancedSearchForm", new AdvancedSearchCriteria());}
+@if (Model.People.Any())
+{
+    <h3>@Model.HeaderText</h3>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.Label("First Name")
+            </th>
+            <th>
+                @Html.Label("Last Name")
+            </th>
+        </tr>
+
+        @foreach (var item in Model.People)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <h3>No Results Found.</h3>
+}
+

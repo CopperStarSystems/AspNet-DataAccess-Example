@@ -1,0 +1,45 @@
+﻿@*@model IEnumerable<DataAccessDemo.Ui.Person>*@
+@model DataAccessDemo.Ui.Models.PeopleSearchData
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm())
+{
+    @Html.Label("First Name:")
+    @Html.TextBox("firstName")
+    <input type="submit" value="Submit"/>
+}
+<hr/>
+
+@if (Model.People.Any())
+{
+    <h3>@Model.HeaderText</h3>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.Label("First Name")
+            </th>
+            <th>
+                @Html.Label("Last Name")
+            </th>
+        </tr>
+
+        @foreach (var item in Model.People)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <h3>No Results Found.</h3>
+}
